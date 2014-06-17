@@ -18,7 +18,7 @@ public class ClientsTableModel extends AbstractTableModel {
   private String[] columnNames = {"Nombre", "Calle", "Num. Ext.", "Num. Int.", "Colonia", "Referencia", "Codigo Postal", "Municipio", "Ciudad", "Estado", "Pais", "RFC", "Email", "Tel", "Comentarios"};
 
   public ClientsTableModel() {
-    this.list = new ArrayList();
+    this.list = new ArrayList<Client>();
   }
 
   public ClientsTableModel(ArrayList<Client> clients) {

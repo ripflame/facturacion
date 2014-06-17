@@ -231,7 +231,7 @@ public class DatabaseController {
   }
 
   public ArrayList<Client> getClients(String clientName) {
-    ArrayList<Client> clients = new ArrayList();
+    ArrayList<Client> clients = new ArrayList<Client>();
 
     Connection c = null;
     Statement stmt = null;
@@ -274,7 +274,7 @@ public class DatabaseController {
   }
 
   public ArrayList<Client> getAllClients() {
-    ArrayList<Client> clients = new ArrayList();
+    ArrayList<Client> clients = new ArrayList<Client>();
 
     Connection c = null;
     Statement stmt = null;
@@ -320,7 +320,7 @@ public class DatabaseController {
   public Client getClient(String clientRFC) {
     Connection c = null;
     Statement stmt = null;
-    ArrayList<Client> clients = new ArrayList();
+    ArrayList<Client> clients = new ArrayList<Client>();
     Client client = null;
     try {
       Class.forName("org.sqlite.JDBC");
