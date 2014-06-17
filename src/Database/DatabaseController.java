@@ -67,11 +67,7 @@ public class DatabaseController {
         + "RFC TEXT NOT NULL, "
         + "REGIME TEXT )";
       stmt.executeUpdate(sql);
-
-      sql = "CREATE TABLE INVOICE " +
-              "(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-              ")";
-      stmt.executeUpdate(sql);
+      
       stmt.close();
       c.close();
 
