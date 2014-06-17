@@ -28,16 +28,9 @@ public class Main extends javax.swing.JFrame {
    */
   public Main() {
     initComponents();
-
-    Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
+    
     File f = new File("database.db");
     DatabaseController db = new DatabaseController();
-
-//    if (prefs.getBoolean("isFirstTime", true) || !f.exists()) {
-//      db.createDatabase();
-//      prefs.putBoolean("isFirstTime", false);
-//      prefs.putBoolean("isIssuingSet", false);
-//    }
 
     if ( !f.exists() && !f.isDirectory() ) {
         db.createDatabase();
