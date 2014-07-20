@@ -711,7 +711,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
   private void newClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newClientButtonActionPerformed
-    Clients clientsGUI = new Clients(this);
+    ClientsGUI clientsGUI = new ClientsGUI(this);
     clientsGUI.setVisible(true);
   }//GEN-LAST:event_newClientButtonActionPerformed
 
@@ -729,7 +729,7 @@ public class Main extends javax.swing.JFrame {
   private void updateClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateClientButtonActionPerformed
     DatabaseController db = new DatabaseController();
     Client client = db.getClient((String) this.clientsTable.getValueAt(this.clientsTable.getSelectedRow(), 11));
-    Clients clientsGUI = new Clients(client, this);
+    ClientsGUI clientsGUI = new ClientsGUI(client, this);
     clientsGUI.setVisible(true);
   }//GEN-LAST:event_updateClientButtonActionPerformed
 

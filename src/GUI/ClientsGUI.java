@@ -12,30 +12,30 @@ import Models.Client;
  *
  * @author Ripflame
  */
-public class Clients extends javax.swing.JFrame {
+public class ClientsGUI extends javax.swing.JFrame {
 
   private boolean isEditing;
   private String originalRFC;
   private Main main;
 
-  public Clients() {
+  public ClientsGUI() {
     initComponents();
     this.isEditing = false;
   }
 
   /**
-   * Creates new form Clients
+   * Creates new form ClientsGUI
    *
    * @param main
    */
-  public Clients(Main main) {
+  public ClientsGUI(Main main) {
     initComponents();
 
     this.isEditing = false;
     this.main = main;
   }
 
-  public Clients(Client client, Main main) {
+  public ClientsGUI(Client client, Main main) {
     initComponents();
 
     this.main = main;
@@ -320,20 +320,20 @@ public class Clients extends javax.swing.JFrame {
         }
       }
     } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(Clients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(ClientsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(Clients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(ClientsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(Clients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(ClientsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(Clients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(ClientsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     //</editor-fold>
 
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-        new Clients().setVisible(true);
+        new ClientsGUI().setVisible(true);
       }
     });
   }
