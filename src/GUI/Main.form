@@ -538,7 +538,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jButton9" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="addQuoteButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="455" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -562,7 +562,7 @@
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="addQuoteButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -682,10 +682,13 @@
                     <Property name="text" type="java.lang.String" value="Nombre:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="addQuoteButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Crear"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addQuoteButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

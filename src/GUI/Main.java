@@ -118,7 +118,7 @@ public class Main extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        addQuoteButton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -475,7 +475,12 @@ public class Main extends javax.swing.JFrame {
 
         jLabel8.setText("Nombre:");
 
-        jButton1.setText("Crear");
+        addQuoteButton.setText("Crear");
+        addQuoteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addQuoteButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -501,7 +506,7 @@ public class Main extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(jButton9)
                             .addGap(18, 18, 18)
-                            .addComponent(jButton1)
+                            .addComponent(addQuoteButton)
                             .addGap(455, 455, 455)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jButton12)
@@ -519,7 +524,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9)
-                    .addComponent(jButton1))
+                    .addComponent(addQuoteButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -772,6 +777,11 @@ public class Main extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_issuingSaveButtonActionPerformed
 
+  private void addQuoteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addQuoteButtonActionPerformed
+      QuoteGUI quoteGUI = new QuoteGUI(this);
+      quoteGUI.setVisible(true);
+  }//GEN-LAST:event_addQuoteButtonActionPerformed
+
   public void updateTable() {
     DatabaseController db = new DatabaseController();
     ArrayList<Client> clients = db.getAllClients();
@@ -808,6 +818,7 @@ public class Main extends javax.swing.JFrame {
   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addQuoteButton;
     private javax.swing.JTable clientsTable;
     private javax.swing.JTextField issuingCityField;
     private javax.swing.JTextField issuingColonyField;
@@ -823,7 +834,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton issuingSaveButton;
     private javax.swing.JTextField issuingStateField;
     private javax.swing.JTextField issuingStreetField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;

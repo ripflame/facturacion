@@ -11,15 +11,36 @@
 
 package GUI;
 
+import Models.ItemsTableModel;
+import Models.QuotesTableModel;
+import java.util.Date;
+
 /**
  *
  * @author Gilberto
  */
 public class QuoteGUI extends javax.swing.JFrame {
 
+    private Main main;
+
     /** Creates new form QuoteGUI */
     public QuoteGUI() {
         initComponents();
+
+        ItemsTableModel model = new ItemsTableModel();
+        this.itemsTable.setModel(model);
+
+        this.dateLabel.setText(new Date().toString());
+    }
+
+    public QuoteGUI(Main main) {
+        initComponents();
+
+        ItemsTableModel model = new ItemsTableModel();
+        this.itemsTable.setModel(model);
+
+        this.main = main;
+        this.dateLabel.setText(new Date().toString());
     }
 
     /** This method is called from within the constructor to
@@ -39,13 +60,12 @@ public class QuoteGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        itemsTable = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -62,7 +82,8 @@ public class QuoteGUI extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cotización");
@@ -73,10 +94,6 @@ public class QuoteGUI extends javax.swing.JFrame {
 
         jLabel4.setText("Dirección:");
 
-        jLabel3.setText("jLabel3");
-
-        jLabel5.setText("jLabel5");
-
         jTextArea1.setColumns(10);
         jTextArea1.setEditable(false);
         jTextArea1.setRows(4);
@@ -86,11 +103,11 @@ public class QuoteGUI extends javax.swing.JFrame {
 
         jLabel6.setText("Fecha:");
 
-        jLabel7.setText("jLabel7");
+        dateLabel.setText("jLabel7");
 
         jButton1.setText("Agregar cliente");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        itemsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -101,17 +118,17 @@ public class QuoteGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(itemsTable);
 
         jButton2.setText("Agregar");
 
         jButton3.setText("Eliminar");
 
-        jTextField1.setText("jTextField1");
+        jTextField2.setEditable(false);
+        jTextField2.setText("$ 0.00");
 
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
+        jTextField3.setEditable(false);
+        jTextField3.setText("$ 0.00");
 
         jLabel8.setText("Subtotal:");
 
@@ -125,11 +142,7 @@ public class QuoteGUI extends javax.swing.JFrame {
 
         jLabel12.setText("Método de pago:");
 
-        jTextField5.setText("jTextField5");
-
         jLabel13.setText("Número de cuenta de pago:");
-
-        jTextField6.setText("jTextField6");
 
         jLabel14.setText("Condiciones de pago:");
 
@@ -139,7 +152,14 @@ public class QuoteGUI extends javax.swing.JFrame {
 
         jButton5.setText("Buscar cliente");
 
-        jButton6.setText("Cancelar");
+        cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setText("$ 0.00");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,7 +169,7 @@ public class QuoteGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
-                        .add(jButton6)
+                        .add(cancelButton)
                         .add(18, 18, 18)
                         .add(jButton4))
                     .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
@@ -166,14 +186,17 @@ public class QuoteGUI extends javax.swing.JFrame {
                                 .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 176, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(jLabel4)
                             .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 277, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(187, 187, 187)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(layout.createSequentialGroup()
+                                .add(207, 207, 207)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(jButton1)
+                                    .add(jButton5)))
+                            .add(layout.createSequentialGroup()
+                                .add(29, 29, 29)
                                 .add(jLabel6)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 111, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(jButton1)
-                            .add(jButton5)))
+                                .add(dateLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(jLabel10)
@@ -181,14 +204,14 @@ public class QuoteGUI extends javax.swing.JFrame {
                                 .add(jButton3)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(jButton2)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 234, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 238, Short.MAX_VALUE)
                                 .add(jLabel8))
                             .add(jLabel9))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jTextField3)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jTextField2)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
+                            .add(jTextField2)
+                            .add(jTextField3)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel11)
@@ -207,34 +230,39 @@ public class QuoteGUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(20, 20, 20)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel1)
-                    .add(jLabel3)
-                    .add(jLabel6)
-                    .add(jLabel7))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
+                        .add(20, 20, 20)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel2)
-                            .add(jLabel5))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jLabel4)
+                            .add(jLabel1)
+                            .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jLabel2)
+                                    .add(jLabel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(jLabel4)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(layout.createSequentialGroup()
+                                .add(jButton5)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jButton1))))
                     .add(layout.createSequentialGroup()
-                        .add(jButton5)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton1)))
+                        .addContainerGap()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel6)
+                            .add(dateLabel))))
                 .add(26, 26, 26)
                 .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 206, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton2)
                     .add(jButton3)
-                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel8))
+                    .add(jLabel8)
+                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -264,12 +292,16 @@ public class QuoteGUI extends javax.swing.JFrame {
                 .add(69, 69, 69)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton4)
-                    .add(jButton6))
-                .addContainerGap())
+                    .add(cancelButton))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
     * @param args the command line arguments
@@ -283,12 +315,14 @@ public class QuoteGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel dateLabel;
+    private javax.swing.JTable itemsTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -300,13 +334,11 @@ public class QuoteGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
